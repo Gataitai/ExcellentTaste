@@ -1,0 +1,66 @@
+﻿@model ExcellentTasteMathijsPattipeilohy.Models.Bestelling
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bestelling</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.aantal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aantal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateTimeBereidingConsumptie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateTimeBereidingConsumptie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prijs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prijs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totaal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totaal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsumptieItem.consumptieGroepCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsumptieItem.consumptieGroepCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reservering.betalingswijze)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reservering.betalingswijze)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bestellingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

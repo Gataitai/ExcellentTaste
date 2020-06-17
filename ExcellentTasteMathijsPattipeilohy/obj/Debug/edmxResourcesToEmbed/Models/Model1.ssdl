@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExcellentTasteDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bestelling">
+    <Key>
+      <PropertyRef Name="bestellingId" />
+    </Key>
+    <Property Name="bestellingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reserveringId" Type="int" Nullable="false" />
+    <Property Name="consumptieItemCode" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="aantal" Type="int" Nullable="false" />
+    <Property Name="dateTimeBereidingConsumptie" Type="datetime" />
+    <Property Name="prijs" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="totaal" Type="decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Consumptie">
+    <Key>
+      <PropertyRef Name="consumptieCode" />
+    </Key>
+    <Property Name="consumptieCode" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="consumptieNaam" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConsumptieGroep">
+    <Key>
+      <PropertyRef Name="consumptieGroepCode" />
+    </Key>
+    <Property Name="consumptieGroepCode" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="consumptieCode" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="consumptieGroepNaam" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConsumptieItem">
+    <Key>
+      <PropertyRef Name="consumptieItemCode" />
+    </Key>
+    <Property Name="consumptieItemCode" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="consumptieGroepCode" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="consumptieItemNaam" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="prijs" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Klant">
+    <Key>
+      <PropertyRef Name="klantId" />
+    </Key>
+    <Property Name="klantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="klantNaam" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="telefoon" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservering">
+    <Key>
+      <PropertyRef Name="reserveringId" />
+    </Key>
+    <Property Name="reserveringId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="klantId" Type="int" Nullable="false" />
+    <Property Name="datum" Type="datetime" Nullable="false" />
+    <Property Name="tijd" Type="time" Precision="7" Nullable="false" />
+    <Property Name="tafel" Type="int" Nullable="false" />
+    <Property Name="aantalPersonen" Type="int" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="datumToegevoegd" Type="datetime" Nullable="false" />
+    <Property Name="bonDatum" Type="datetime" Nullable="false" />
+    <Property Name="betalingswijze" Type="varchar" MaxLength="2" />
+    <Property Name="bonTotaal" Type="decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_AspNetUserRoles_AspNetRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bestelling_ConsumptieItem">
+    <End Role="ConsumptieItem" Type="Self.ConsumptieItem" Multiplicity="1" />
+    <End Role="Bestelling" Type="Self.Bestelling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConsumptieItem">
+        <PropertyRef Name="consumptieItemCode" />
+      </Principal>
+      <Dependent Role="Bestelling">
+        <PropertyRef Name="consumptieItemCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bestelling_Reservering">
+    <End Role="Reservering" Type="Self.Reservering" Multiplicity="1" />
+    <End Role="Bestelling" Type="Self.Bestelling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservering">
+        <PropertyRef Name="reserveringId" />
+      </Principal>
+      <Dependent Role="Bestelling">
+        <PropertyRef Name="reserveringId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsumptieItem_SubConsumptie">
+    <End Role="ConsumptieGroep" Type="Self.ConsumptieGroep" Multiplicity="1" />
+    <End Role="ConsumptieItem" Type="Self.ConsumptieItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConsumptieGroep">
+        <PropertyRef Name="consumptieGroepCode" />
+      </Principal>
+      <Dependent Role="ConsumptieItem">
+        <PropertyRef Name="consumptieGroepCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservering_Klant">
+    <End Role="Klant" Type="Self.Klant" Multiplicity="1" />
+    <End Role="Reservering" Type="Self.Reservering" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klant">
+        <PropertyRef Name="klantId" />
+      </Principal>
+      <Dependent Role="Reservering">
+        <PropertyRef Name="klantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubConsumptie_Consumptie">
+    <End Role="Consumptie" Type="Self.Consumptie" Multiplicity="1" />
+    <End Role="ConsumptieGroep" Type="Self.ConsumptieGroep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consumptie">
+        <PropertyRef Name="consumptieCode" />
+      </Principal>
+      <Dependent Role="ConsumptieGroep">
+        <PropertyRef Name="consumptieCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GET_TODAYS_RESERVATIONS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ExcellentTasteDBModelStoreContainer">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bestelling" EntityType="Self.Bestelling" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Consumptie" EntityType="Self.Consumptie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConsumptieGroep" EntityType="Self.ConsumptieGroep" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConsumptieItem" EntityType="Self.ConsumptieItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Klant" EntityType="Self.Klant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservering" EntityType="Self.Reservering" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="Self.FK_AspNetUserRoles_AspNetRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bestelling_ConsumptieItem" Association="Self.FK_Bestelling_ConsumptieItem">
+      <End Role="ConsumptieItem" EntitySet="ConsumptieItem" />
+      <End Role="Bestelling" EntitySet="Bestelling" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bestelling_Reservering" Association="Self.FK_Bestelling_Reservering">
+      <End Role="Reservering" EntitySet="Reservering" />
+      <End Role="Bestelling" EntitySet="Bestelling" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsumptieItem_SubConsumptie" Association="Self.FK_ConsumptieItem_SubConsumptie">
+      <End Role="ConsumptieGroep" EntitySet="ConsumptieGroep" />
+      <End Role="ConsumptieItem" EntitySet="ConsumptieItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservering_Klant" Association="Self.FK_Reservering_Klant">
+      <End Role="Klant" EntitySet="Klant" />
+      <End Role="Reservering" EntitySet="Reservering" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubConsumptie_Consumptie" Association="Self.FK_SubConsumptie_Consumptie">
+      <End Role="Consumptie" EntitySet="Consumptie" />
+      <End Role="ConsumptieGroep" EntitySet="ConsumptieGroep" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

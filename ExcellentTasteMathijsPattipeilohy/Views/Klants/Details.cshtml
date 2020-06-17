@@ -1,0 +1,42 @@
+﻿@model ExcellentTasteMathijsPattipeilohy.Models.Klant
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Klant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.klantNaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.klantNaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefoon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefoon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.klantId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

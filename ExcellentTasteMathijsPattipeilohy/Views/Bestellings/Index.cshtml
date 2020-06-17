@@ -1,0 +1,68 @@
+﻿@model PagedList.IPagedList<ExcellentTasteMathijsPattipeilohy.Models.Bestelling>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            tafel
+        </th>
+        <th>
+            consumptie naam
+        </th>
+        <th>
+            aantal
+        </th>
+        <th>
+            item aanmaking
+        </th>
+        <th>
+            prijs
+        </th>
+        <th>
+            totaal
+        </th>
+        <th>
+            consumptie groeps code
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reservering.tafel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsumptieItem.consumptieItemNaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.aantal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateTimeBereidingConsumptie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prijs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totaal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsumptieItem.consumptieGroepCode)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.bestellingId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.bestellingId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.bestellingId })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ExcellentTasteMathijsPattipeilohy.Models.ConsumptieItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.consumptieItemNaam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prijs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsumptieGroep.consumptieCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsumptieGroep.consumptieGroepCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.consumptieItemNaam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prijs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsumptieGroep.consumptieCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsumptieGroep.consumptieGroepCode)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", new { id = item.consumptieItemCode })" class="btn btn-warning" , style="margin: 10px;">
+                <i icon class="glyphicon glyphicon-pencil"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

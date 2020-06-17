@@ -1,0 +1,282 @@
+﻿/* GateGlobalContent*/
+
+.gateimage {
+    width: 10rem;
+    box-sizing: border-box;
+    resize: none;
+    border-radius: 8px;
+    margin: 1rem;
+    box-shadow: -1rem 0 3rem #111111;
+    transition: 0.4s ease-out;
+}
+
+.gategifimage {
+    height: 10rem;
+    width: 10rem;
+    box-sizing: border-box;
+    resize: none;
+    border-radius: 8px;
+    margin: 1rem;
+    box-shadow: -1rem 0 3rem #111111;
+    transition: 0.4s ease-out;
+}
+
+    .gateimage:hover, .gategifimage:hover {
+        transform: scale(1.2);
+        transition: 0.4s ease-out;
+    }
+
+    .gategifimage:hover {
+        filter: blur(5px);
+    }
+
+.gateindex {
+    padding: 6px 12px;
+    background-color: #2f2f2f;
+    transition: 0.4s ease-out;
+    box-shadow: -1rem 0 3rem #111111;
+}
+
+    .gateindex:hover {
+        transform: scale(1.1);
+        transition: 0.4s ease-out;
+    }
+
+.gateflex {
+    display: flex;
+    flex-direction: row;
+}
+
+/* GateGlobalUpperCard */
+
+.gateuppercard {
+    background-color: #464545;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
+    box-shadow: -1rem 0 3rem #111111;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+/* HomePageKeyFrames */
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* HomePageGridBanner */
+
+.gate-index-uppercard {
+    animation: cardEntrance 200ms ease-out;
+    background-color: #464545;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
+    box-shadow: -1rem 0 3rem #111111;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.gate-grid-banner-cards {
+    display: grid;
+    margin: 40px;
+    gap: 40px;
+    grid-template-areas: "a a" "b c";
+    --stagger-delay: 100ms;
+}
+
+.gate-banner-card {
+    animation: cardEntrance 200ms ease-out;
+    animation-fill-mode: backwards;
+    transition: all .3s ease-in-out;
+    box-shadow: -1rem 0 3rem #111111;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+    .gate-banner-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 30px;
+    }
+
+    .gate-banner-card:hover {
+        transform: scale(1.1);
+        transition: 0.4s ease-out;
+        text-decoration: none;
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .gate-banner-card:nth-child(1) {
+        grid-area: a;
+        animation-delay: calc(1 * var(--stagger-delay));
+    }
+
+    .gate-banner-card:nth-child(2) {
+        grid-area: b;
+        animation-delay: calc(1 * var(--stagger-delay));
+    }
+
+    .gate-banner-card:nth-child(3) {
+        grid-area: c;
+        animation-delay: calc(1 * var(--stagger-delay));
+    }
+
+@media screen and (max-width: 500px) {
+    .gate-grid-banner-cards {
+        grid-template-areas: "a" "b" "c";
+        margin: 0;
+    }
+
+    .gateuppercard {
+        margin: 10px;
+    }
+}
+
+/* HomePageGridForEachCards */
+
+.gate-grid-cards {
+    display: grid;
+    gap: 30px;
+    grid-template-areas: "a b c d";
+    --stagger-delay: 100ms;
+}
+
+.gate-card {
+    background-color: #464545;
+    margin: 30px auto;
+    height: 250px;
+    width: 200px;
+    animation: cardEntrance 200ms ease-out;
+    animation-fill-mode: backwards;
+    transition: all .3s ease-in-out;
+    border-radius: 30px;
+    box-shadow: -1rem 0 3rem #111111;
+}
+
+    .gate-card .gate-cardimage {
+        width: inherit;
+        height: inherit;
+        border-radius: inherit;
+    }
+
+        .gate-card .gate-cardimage img {
+            width: inherit;
+            height: inherit;
+            border-radius: inherit;
+            object-fit: cover;
+        }
+
+    .gate-card .gate-cardtitle {
+        text-align: center;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 30px;
+        margin-top: -55px;
+        color: black;
+    }
+
+    .gate-card:hover {
+        transform: scale(1.3);
+        transition: 0.4s ease-out;
+        filter: saturate(2);
+        border-radius: 50px;
+        text-decoration: none;
+    }
+
+    .gate-card:nth-child(1) {
+        grid-area: a;
+        animation-delay: calc(1 * var(--stagger-delay));
+    }
+
+    .gate-card:nth-child(2) {
+        grid-area: b;
+        animation-delay: calc(2 * var(--stagger-delay));
+    }
+
+    .gate-card:nth-child(3) {
+        grid-area: c;
+        animation-delay: calc(3 * var(--stagger-delay));
+    }
+
+    .gate-card:nth-child(4) {
+        grid-area: d;
+        animation-delay: calc(4 * var(--stagger-delay));
+    }
+
+@media screen and (max-width: 1200px) {
+    .gate-grid-cards {
+        gap: 0px;
+        margin: 30px;
+        grid-template-areas: "a b" "c d";
+    }
+
+    .gate-card {
+        height: 300px;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .gate-grid-cards {
+        gap: 0px;
+        margin: 30px;
+        grid-template-areas: "a b" "c d";
+    }
+
+    .gate-card {
+        height: 200px;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .gate-grid-cards {
+        gap: 0px;
+        margin: 30px;
+        grid-template-areas: "a b" "c d";
+    }
+
+    .gate-card {
+        height: 150px;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .gate-grid-cards {
+        gap: 1px;
+        grid-template-areas: "a" "b" "c" "d";
+    }
+
+    .gate-card {
+        height: 180px;
+        width: 170px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .gate-grid-cards {
+        gap: 1px;
+        grid-template-areas: "a" "b" "c" "d";
+    }
+
+    .gate-card {
+        height: 180px;
+        width: 170px;
+    }
+}

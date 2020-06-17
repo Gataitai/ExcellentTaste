@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ExcellentTasteMathijsPattipeilohy.Models.Reservering>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.datum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tijd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tafel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aantalPersonen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datumToegevoegd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bonDatum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.betalingswijze)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bonTotaal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Klant.klantNaam)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.datum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tijd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tafel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aantalPersonen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datumToegevoegd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bonDatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.betalingswijze)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bonTotaal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Klant.klantNaam)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", new { id = item.reserveringId })" class="btn btn-warning" , style="margin: 10px;">
+                <i icon class="glyphicon glyphicon-pencil"></i>
+            </a>
+            <a href="@Url.Action("Details", new { id = item.reserveringId })" class="btn btn-primary" , style="margin: 10px;">
+                <i icon class="glyphicon glyphicon-book"></i>
+            </a>
+            <a href="@Url.Action("Delete", new { id = item.reserveringId })" class="btn btn-danger" , style="margin: 10px;">
+                <i icon class="glyphicon glyphicon-trash"></i>
+            </a>
+
+            <a href="@Url.Action("Create", "Bestellings", new { id = item.reserveringId })" class="btn btn-success" , style="margin: 10px;">
+                <i icon class="glyphicon glyphicon-plus"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

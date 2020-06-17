@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="caf8a4fca62f42dfa42ee5835deee755" Name="Diagram1">
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.Bestelling" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.Consumptie" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.ConsumptieGroep" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.ConsumptieItem" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.Klant" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.Reservering" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExcellentTasteDBModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="ExcellentTasteDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ExcellentTasteDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ExcellentTasteDBModel.FK_Bestelling_ConsumptieItem" ManuallyRouted="false" />
+        <AssociationConnector Association="ExcellentTasteDBModel.FK_Bestelling_Reservering" ManuallyRouted="false" />
+        <AssociationConnector Association="ExcellentTasteDBModel.FK_SubConsumptie_Consumptie" ManuallyRouted="false" />
+        <AssociationConnector Association="ExcellentTasteDBModel.FK_ConsumptieItem_SubConsumptie" ManuallyRouted="false" />
+        <AssociationConnector Association="ExcellentTasteDBModel.FK_Reservering_Klant" ManuallyRouted="false" />
+        <AssociationConnector Association="ExcellentTasteDBModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
