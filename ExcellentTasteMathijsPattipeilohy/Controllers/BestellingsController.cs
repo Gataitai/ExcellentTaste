@@ -8,7 +8,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ExcellentTasteMathijsPattipeilohy.Models;
-using PagedList;
 
 namespace ExcellentTasteMathijsPattipeilohy.Controllers
 {
@@ -108,9 +107,110 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
             return View(bestelling);
         }
 
+        // GET: Bestellings/Editbar/5
+        public ActionResult Editbar(int? id)
+        {
+            //session bestellingid voor post method edit
+            Session["bestellingid"] = id;
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Bestelling bestelling = db.Bestelling.Find(id);
+            if (bestelling == null)
+            {
+                return HttpNotFound();
+            }
+            return View(bestelling);
+        }
+
+        // POST: Bestellings/Editbar/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editbar([Bind(Include = "bestellingId,reserveringId,consumptieItemCode,aantal,dateTimeBereidingConsumptie,prijs,totaal,isKlaar")] Bestelling bestelling)
+        {
+            //session van get method met bestelling id
+            var bestellingid = Convert.ToInt32(Session["bestellingid"]);
+
+            // data met session id ophalen
+            var currentbestelling = db.Bestelling.AsNoTracking().Single(s => s.bestellingId == bestellingid);
+
+            //data van db opgehaald en weer teruggestored via edit zodat deze niet verloren gaat
+            bestelling.reserveringId = currentbestelling.reserveringId;
+            bestelling.consumptieItemCode = currentbestelling.consumptieItemCode;
+            bestelling.aantal = currentbestelling.aantal;
+            bestelling.dateTimeBereidingConsumptie = currentbestelling.dateTimeBereidingConsumptie;
+
+            //status bestelling isKlaar is true
+            bestelling.isKlaar = true;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(bestelling).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Bar");
+            }
+            return View(bestelling);
+        }
+
+        // GET: Bestellings/Editkok/5
+        public ActionResult Editkok(int? id)
+        {
+            //session bestellingid voor post method edit
+            Session["bestellingid"] = id;
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Bestelling bestelling = db.Bestelling.Find(id);
+            if (bestelling == null)
+            {
+                return HttpNotFound();
+            }
+            return View(bestelling);
+        }
+
+        // POST: Bestellings/Editkok/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editkok([Bind(Include = "bestellingId,reserveringId,consumptieItemCode,aantal,dateTimeBereidingConsumptie,prijs,totaal,isKlaar")] Bestelling bestelling)
+        {
+            //session van get method met bestelling id
+            var bestellingid = Convert.ToInt32(Session["bestellingid"]);
+
+            // data met session id ophalen
+            var currentbestelling = db.Bestelling.AsNoTracking().Single(s => s.bestellingId == bestellingid);
+
+            //data van db opgehaald en weer teruggestored via edit zodat deze niet verloren gaat
+            bestelling.reserveringId = currentbestelling.reserveringId;
+            bestelling.consumptieItemCode = currentbestelling.consumptieItemCode;
+            bestelling.aantal = currentbestelling.aantal;
+            bestelling.dateTimeBereidingConsumptie = currentbestelling.dateTimeBereidingConsumptie;
+
+            //status bestelling isKlaar is true
+            bestelling.isKlaar = true;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(bestelling).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Kok");
+            }
+            return View(bestelling);
+        }
+
         // GET: Bestellings/Edit/5
         public ActionResult Edit(int? id)
         {
+            //session bestellingid voor post method edit
+            Session["bestellingid"] = id;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -130,8 +230,20 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "bestellingId,reserveringId,consumptieItemCode,aantal,dateTimeBereidingConsumptie,prijs,totaal,isKlaar")] Bestelling bestelling)
         {
-            //status bestelling isKlaar is false
-            bestelling.isKlaar = true;
+            //session van get method met bestelling id
+            var bestellingid = Convert.ToInt32(Session["bestellingid"]);
+
+            // data met session id ophalen
+            var currentbestelling = db.Bestelling.AsNoTracking().Single(s => s.bestellingId == bestellingid);
+
+            //data van db opgehaald en weer teruggestored via edit zodat deze niet verloren gaat
+            bestelling.reserveringId = currentbestelling.reserveringId;
+            bestelling.consumptieItemCode = currentbestelling.consumptieItemCode;
+            bestelling.aantal = currentbestelling.aantal;
+            bestelling.dateTimeBereidingConsumptie = currentbestelling.dateTimeBereidingConsumptie;
+            
+            //status bestelling isKlaar is true
+            bestelling.isKlaar = false;
 
             if (ModelState.IsValid)
             {

@@ -339,6 +339,8 @@
     <Content Include="Views\ConsumptieItems\Index.cshtml" />
     <Content Include="Views\Bestellings\Bar.cshtml" />
     <Content Include="Views\Bestellings\Kok.cshtml" />
+    <Content Include="Views\Bestellings\Editkok.cshtml" />
+    <Content Include="Views\Bestellings\Editbar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

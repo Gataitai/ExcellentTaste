@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ExcellentTasteMathijsPattipeilohy.Models;
+using PagedList;
 
 namespace ExcellentTasteMathijsPattipeilohy.Controllers
 {
@@ -15,10 +16,38 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
         private ExcellentTasteDBEntities db = new ExcellentTasteDBEntities();
 
         // GET: Reserverings
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var reservering = db.Reservering.Include(r => r.Klant);
-            return View(reservering.ToList());
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.CurrentFilter = searchString;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            var reserveringen = from s in db.Reservering select s;
+            var datetime = DateTime.Now;
+            var vandaag = datetime.Date;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                reserveringen = reserveringen.Where(s => s.Klant.klantNaam.Contains(searchString));
+            }
+            else
+            {
+                reserveringen = reserveringen.Where(s => s.datum == vandaag);
+            }
+
+            int pageSize = 100;
+            int pageNumber = (page ?? 1);
+
+            return View(reserveringen.OrderBy(i => i.datum).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Reserverings/Details/5

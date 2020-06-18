@@ -3,35 +3,31 @@
 @{
     ViewBag.Title = "Index";
 }
-    <br />
-    <p>
-        Bestellingen voor Kok
-    </p>
-
-<h2>Index</h2>
-
+<br />
+<h2>Bestellingen voor Kok</h2>
+<br />
 <table class="table">
     <tr>
         <th>
-            tafel
+            Tafel
         </th>
         <th>
-            consumptie naam
+            Consumptie naam
         </th>
         <th>
-            aantal
+            Aantal
         </th>
         <th>
-            item aanmaking
+            Bestelling aanmaking
         </th>
         <th>
-            prijs
+            Prijs
         </th>
         <th>
-            totaal
+            Totaal
         </th>
         <th>
-            consumptie groeps code
+            Consumptie groeps code
         </th>
         <th></th>
     </tr>
@@ -61,8 +57,8 @@
                 @Html.DisplayFor(modelItem => item.ConsumptieItem.consumptieGroepCode)
             </td>
             <td>
-                <a href="@Url.Action("Edit", new { id = item.bestellingId })" class="btn btn-warning" , style="margin: 10px;">
-                    <i icon class="glyphicon glyphicon-pencil"></i>
+                <a href="@Url.Action("Editkok", new { id = item.bestellingId })" class="btn btn-success" , style="margin: 10px;">
+                    <i icon class="glyphicon glyphicon-check"></i>
                 </a>
                 <a href="@Url.Action("Details", new { id = item.bestellingId })" class="btn btn-primary" , style="margin: 10px;">
                     <i icon class="glyphicon glyphicon-book"></i>

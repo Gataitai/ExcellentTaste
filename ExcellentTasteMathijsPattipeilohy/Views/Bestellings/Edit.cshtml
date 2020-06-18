@@ -11,23 +11,23 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Bestelling is klaar?</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.bestellingId)
+<div class="form-horizontal">
+    <h4>Bestelling terug sturen?</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.bestellingId)
 
-        <div class="form-group">
+    <div class="form-group">
 
-            <a href="@Url.Action("Index", "Bestellings")" class="btn btn-primary" , style="margin: 10px;">
-                <i icon class="glyphicon glyphicon-arrow-left"></i>
-            </a>
+        <a href="@Url.Action("Index", "Bestellings")" class="btn btn-primary" , style="margin: 10px;">
+            <i icon class="glyphicon glyphicon-arrow-left"></i>
+        </a>
 
-            <input type="submit" value="Klaar" class="btn btn-success" />
-
-        </div>
+        <input type="submit" value="breng terug" class="btn btn-danger" />
 
     </div>
+
+</div>
 }
 
 @section Scripts {

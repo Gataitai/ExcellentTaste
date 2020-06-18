@@ -43,10 +43,8 @@ namespace ExcellentTasteMathijsPattipeilohy.Models
 
         public int reserveringId { get; set; }
 
-        [Required]
         public string consumptieItemCode { get; set; }
 
-        [Required]
         public int aantal { get; set; }
 
         public Nullable<System.DateTime> dateTimeBereidingConsumptie { get; set; }

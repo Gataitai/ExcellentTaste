@@ -1,0 +1,35 @@
+﻿@model ExcellentTasteMathijsPattipeilohy.Models.Bestelling
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Bestelling</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Bestelling is klaar?</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.bestellingId)
+
+        <div class="form-group">
+
+            <a href="@Url.Action("Index", "Kok", "Bestellings")" class="btn btn-primary" , style="margin: 10px;">
+                <i icon class="glyphicon glyphicon-arrow-left"></i>
+            </a>
+
+            <input type="submit" value="Klaar" class="btn btn-success" />
+
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

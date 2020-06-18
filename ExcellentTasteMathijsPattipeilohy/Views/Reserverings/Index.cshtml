@@ -1,97 +1,119 @@
-﻿@model IEnumerable<ExcellentTasteMathijsPattipeilohy.Models.Reservering>
+﻿@model PagedList.IPagedList<ExcellentTasteMathijsPattipeilohy.Models.Reservering>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Reserveringen van vandaag</h2>
+<br />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Reservering Aanmaken", "Create", new { controller = "Reserverings" }, new { @class = "btn btn-success" })
 </p>
+@using (Html.BeginForm())
+{
+    <div class="gateflex">
+        <p>
+            @Html.TextBox("searchstring", "", new { @class = "form-control", autocomplete = "off", placeholder = "Zoeken", style = "margin-right: 10px;" })
+        </p>
+        <p>
+            <input type="submit" value="Klant Zoeken" class="btn btn-primary" style="margin-left: 10px;">
+        </p>
+    </div>
+}
+<br />
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.datum)
+            Datum
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tijd)
+            Tijd
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tafel)
+            Tafel
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.aantalPersonen)
+            Aantal Personen
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.status)
+            Status opdagen
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.datumToegevoegd)
+            Datum Toegevoegd
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.bonDatum)
+            Bon Datum
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.betalingswijze)
+            Betalings Wijze
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.bonTotaal)
+            Bon Totaal
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Klant.klantNaam)
+            Klant Naam
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.datum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tijd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tafel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.aantalPersonen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.datumToegevoegd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.bonDatum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.betalingswijze)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.bonTotaal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Klant.klantNaam)
-        </td>
-        <td>
-            <a href="@Url.Action("Edit", new { id = item.reserveringId })" class="btn btn-warning" , style="margin: 10px;">
-                <i icon class="glyphicon glyphicon-pencil"></i>
-            </a>
-            <a href="@Url.Action("Details", new { id = item.reserveringId })" class="btn btn-primary" , style="margin: 10px;">
-                <i icon class="glyphicon glyphicon-book"></i>
-            </a>
-            <a href="@Url.Action("Delete", new { id = item.reserveringId })" class="btn btn-danger" , style="margin: 10px;">
-                <i icon class="glyphicon glyphicon-trash"></i>
-            </a>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.datum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tijd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tafel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.aantalPersonen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datumToegevoegd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bonDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.betalingswijze)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bonTotaal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Klant.klantNaam)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.reserveringId })" class="btn btn-warning" , style="margin: 10px;">
+                    <i icon class="glyphicon glyphicon-pencil"></i>
+                </a>
+                <a href="@Url.Action("Details", new { id = item.reserveringId })" class="btn btn-primary" , style="margin: 10px;">
+                    <i icon class="glyphicon glyphicon-book"></i>
+                </a>
+                <a href="@Url.Action("Delete", new { id = item.reserveringId })" class="btn btn-danger" , style="margin: 10px;">
+                    <i icon class="glyphicon glyphicon-trash"></i>
+                </a>
 
-            <a href="@Url.Action("Create", "Bestellings", new { id = item.reserveringId })" class="btn btn-success" , style="margin: 10px;">
-                <i icon class="glyphicon glyphicon-plus"></i>
-            </a>
-        </td>
-    </tr>
-}
+                <a href="@Url.Action("Create", "Bestellings", new { id = item.reserveringId })" class="btn btn-success" , style="margin: 10px;">
+                    <i icon class="glyphicon glyphicon-plus"></i>
+                </a>
+            </td>
+        </tr>
+    }
 
 </table>
+
+<!--mvc pager-->
+        Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) van @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
