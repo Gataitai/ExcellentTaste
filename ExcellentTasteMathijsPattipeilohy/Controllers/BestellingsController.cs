@@ -120,8 +120,6 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.consumptieItemCode = new SelectList(db.ConsumptieItem, "consumptieItemCode", "consumptieGroepCode", bestelling.consumptieItemCode);
-            ViewBag.reserveringId = new SelectList(db.Reservering, "reserveringId", "betalingswijze", bestelling.reserveringId);
             return View(bestelling);
         }
 
@@ -132,14 +130,15 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "bestellingId,reserveringId,consumptieItemCode,aantal,dateTimeBereidingConsumptie,prijs,totaal,isKlaar")] Bestelling bestelling)
         {
+            //status bestelling isKlaar is false
+            bestelling.isKlaar = true;
+
             if (ModelState.IsValid)
             {
                 db.Entry(bestelling).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.consumptieItemCode = new SelectList(db.ConsumptieItem, "consumptieItemCode", "consumptieGroepCode", bestelling.consumptieItemCode);
-            ViewBag.reserveringId = new SelectList(db.Reservering, "reserveringId", "betalingswijze", bestelling.reserveringId);
             return View(bestelling);
         }
 

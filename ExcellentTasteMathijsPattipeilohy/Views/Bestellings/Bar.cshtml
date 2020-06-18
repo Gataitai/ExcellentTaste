@@ -62,8 +62,12 @@
                 @Html.DisplayFor(modelItem => item.ConsumptieItem.consumptieGroepCode)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.bestellingId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.bestellingId })
+                <a href="@Url.Action("Edit", new { id = item.bestellingId })" class="btn btn-warning" , style="margin: 10px;">
+                    <i icon class="glyphicon glyphicon-pencil"></i>
+                </a>
+                <a href="@Url.Action("Details", new { id = item.bestellingId })" class="btn btn-primary" , style="margin: 10px;">
+                    <i icon class="glyphicon glyphicon-book"></i>
+                </a>
             </td>
         </tr>
     }
