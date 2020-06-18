@@ -11,6 +11,7 @@ using ExcellentTasteMathijsPattipeilohy.Models;
 
 namespace ExcellentTasteMathijsPattipeilohy.Controllers
 {
+    [Authorize(Roles = "medewerker")]
     public class BestellingsController : Controller
     {
         private ExcellentTasteDBEntities db = new ExcellentTasteDBEntities();
@@ -80,6 +81,8 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "bestellingId,reserveringId,consumptieItemCode,aantal,dateTimeBereidingConsumptie,prijs,totaal,isKlaar")] Bestelling bestelling)
         {
+
+
             //session van get method met reservering id
             var reserveringid = Convert.ToInt32(Session["reserveringid"]);
             bestelling.reserveringId = reserveringid;
@@ -95,7 +98,7 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
 
             //viewbag met items menu
             ViewBag.consumptieItemCode = new SelectList(db.ConsumptieItem, "consumptieItemCode", "consumptieItemNaam", bestelling.consumptieItemCode);
-            
+       
 
             if (ModelState.IsValid)
             {

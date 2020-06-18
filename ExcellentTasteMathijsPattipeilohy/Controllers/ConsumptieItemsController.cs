@@ -10,6 +10,7 @@ using ExcellentTasteMathijsPattipeilohy.Models;
 
 namespace ExcellentTasteMathijsPattipeilohy.Controllers
 {
+    [Authorize(Roles = "medewerker")]
     public class ConsumptieItemsController : Controller
     {
         private ExcellentTasteDBEntities db = new ExcellentTasteDBEntities();

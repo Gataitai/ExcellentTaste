@@ -6,9 +6,7 @@ namespace ExcellentTasteMathijsPattipeilohy.Models
 {
     public class reserveringmetadata
     {
-        [Required(ErrorMessage = "vul datum reservering in")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Reserverings Datum")]
         public DateTime datum { get; set; }
 

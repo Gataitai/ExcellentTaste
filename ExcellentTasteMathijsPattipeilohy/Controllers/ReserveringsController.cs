@@ -11,6 +11,7 @@ using PagedList;
 
 namespace ExcellentTasteMathijsPattipeilohy.Controllers
 {
+
     public class ReserveringsController : Controller
     {
         private ExcellentTasteDBEntities db = new ExcellentTasteDBEntities();
@@ -105,6 +106,12 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
         // GET: Reserverings/Edit/5
         public ActionResult Edit(int? id)
         {
+            var prijslijst = db.Bestelling.Where(i => i.reserveringId == id);
+            var aantalitems = prijslijst.Count();
+
+            //session reserveringsid voor post method edit
+            Session["reserveringid"] = id;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -125,6 +132,25 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "reserveringId,klantId,datum,tijd,tafel,aantalPersonen,status,datumToegevoegd,bonDatum")] Reservering reservering)
         {
+            //session van get method met bestelling id
+            var reserveringid = Convert.ToInt32(Session["reserveringid"]);
+
+            // data met session id ophalen
+            var currentreservering = db.Reservering.AsNoTracking().Single(s => s.reserveringId == reserveringid);
+
+            //data van db opgehaald en weer teruggestored via edit zodat deze niet verloren gaat
+            reservering.reserveringId = reserveringid;
+            reservering.klantId = currentreservering.klantId;
+            reservering.datumToegevoegd = currentreservering.datumToegevoegd;
+            reservering.bonDatum = currentreservering.bonDatum;
+
+            //voor als datum niet vervangen word in de edit
+            if(reservering.datum == null)
+            {
+                reservering.datum = currentreservering.datum;
+            }
+
+
             if (ModelState.IsValid)
             {
                 db.Entry(reservering).State = EntityState.Modified;
