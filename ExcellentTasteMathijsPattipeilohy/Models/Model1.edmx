@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ExcellentTasteDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ExcellentTasteDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -67,6 +67,7 @@
           <Property Name="dateTimeBereidingConsumptie" Type="datetime" />
           <Property Name="prijs" Type="decimal" Precision="19" Scale="4" />
           <Property Name="totaal" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="isKlaar" Type="bit" />
         </EntityType>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -251,7 +252,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="GET_TODAYS_RESERVATIONS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ExcellentTasteDBModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -303,7 +303,8 @@
             <End Role="ConsumptieGroep" EntitySet="ConsumptieGroep" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ExcellentTasteDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -367,6 +368,7 @@
           <Property Name="dateTimeBereidingConsumptie" Type="DateTime" Precision="3" />
           <Property Name="prijs" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="totaal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="isKlaar" Type="Boolean" />
           <NavigationProperty Name="ConsumptieItem" Relationship="Self.FK_Bestelling_ConsumptieItem" FromRole="Bestelling" ToRole="ConsumptieItem" />
           <NavigationProperty Name="Reservering" Relationship="Self.FK_Bestelling_Reservering" FromRole="Bestelling" ToRole="Reservering" />
         </EntityType>
@@ -584,19 +586,7 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <FunctionImport Name="GET_TODAYS_RESERVATIONS" ReturnType="Collection(ExcellentTasteDBModel.GET_TODAYS_RESERVATIONS_Result)" />
         </EntityContainer>
-        <ComplexType Name="GET_TODAYS_RESERVATIONS_Result">
-          <Property Type="String" Name="klantNaam" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="telefoon" Nullable="false" MaxLength="11" />
-          <Property Type="Time" Name="tijd" Nullable="false" />
-          <Property Type="Int32" Name="tafel" Nullable="false" />
-          <Property Type="Int32" Name="aantalPersonen" Nullable="false" />
-          <Property Type="DateTime" Name="datumToegevoegd" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="reserveringId" Nullable="false" />
-          <Property Type="Int32" Name="status" Nullable="false" />
-          <Property Type="Decimal" Name="BonBestellingen" Nullable="true" Precision="19" Scale="4" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -658,6 +648,7 @@
                 <ScalarProperty Name="dateTimeBereidingConsumptie" ColumnName="dateTimeBereidingConsumptie" />
                 <ScalarProperty Name="prijs" ColumnName="prijs" />
                 <ScalarProperty Name="totaal" ColumnName="totaal" />
+                <ScalarProperty Name="isKlaar" ColumnName="isKlaar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -744,21 +735,6 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="GET_TODAYS_RESERVATIONS" FunctionName="ExcellentTasteDBModel.Store.GET_TODAYS_RESERVATIONS">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ExcellentTasteDBModel.GET_TODAYS_RESERVATIONS_Result">
-                <ScalarProperty Name="klantNaam" ColumnName="klantNaam" />
-                <ScalarProperty Name="telefoon" ColumnName="telefoon" />
-                <ScalarProperty Name="tijd" ColumnName="tijd" />
-                <ScalarProperty Name="tafel" ColumnName="tafel" />
-                <ScalarProperty Name="aantalPersonen" ColumnName="aantalPersonen" />
-                <ScalarProperty Name="datumToegevoegd" ColumnName="datumToegevoegd" />
-                <ScalarProperty Name="reserveringId" ColumnName="reserveringId" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="BonBestellingen" ColumnName="BonBestellingen" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

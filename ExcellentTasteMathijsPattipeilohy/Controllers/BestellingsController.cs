@@ -16,30 +16,27 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
     {
         private ExcellentTasteDBEntities db = new ExcellentTasteDBEntities();
 
-        // GET: Bestellings
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        // GET: Bestellings Bar
+        public ActionResult Bar()
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.CurrentFilter = searchString;
-
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            var bestellings = from s in db.Bestelling select s;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                bestellings = bestellings.Where(s => s.ConsumptieItem.consumptieItemNaam.Contains(searchString));
-            }
-
-            return View(bestellings.OrderBy(i => i.dateTimeBereidingConsumptie));
+            //linq statment die dranken weergeeft die nog niet klaar zijn voor barman
+            return View(db.Bestelling.Where(s => s.ConsumptieItem.ConsumptieGroep.Consumptie.consumptieCode == "drk").Where(s => s.isKlaar == false));
         }
+
+        // GET: Bestellings Kok
+        public ActionResult Kok()
+        {
+            //linq statement die al het eten weergeeft die nog niet klaar zijn
+            return View(db.Bestelling.Where(s => s.ConsumptieItem.ConsumptieGroep.Consumptie.consumptieCode != "drk").Where(s => s.isKlaar == false));
+        }
+
+        // GET: Bestellings Index
+        public ActionResult Index()
+        {
+            return View(db.Bestelling.Where(s => s.isKlaar == true));
+        }
+
+
 
         // GET: Bestellings/Details/5
         public ActionResult Details(int? id)
@@ -82,7 +79,7 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "bestellingId,reserveringId,consumptieItemCode,aantal,dateTimeBereidingConsumptie,prijs,totaal")] Bestelling bestelling)
+        public ActionResult Create([Bind(Include = "bestellingId,reserveringId,consumptieItemCode,aantal,dateTimeBereidingConsumptie,prijs,totaal,isKlaar")] Bestelling bestelling)
         {
             //session van get method met reservering id
             var reserveringid = Convert.ToInt32(Session["reserveringid"]);
@@ -93,6 +90,9 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
 
             //bestellings tijd nu
             bestelling.dateTimeBereidingConsumptie = now;
+
+            //status bestelling isKlaar is false
+            bestelling.isKlaar = false;
 
             //viewbag met items menu
             ViewBag.consumptieItemCode = new SelectList(db.ConsumptieItem, "consumptieItemCode", "consumptieItemNaam", bestelling.consumptieItemCode);
@@ -130,7 +130,7 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "bestellingId,reserveringId,consumptieItemCode,aantal,dateTimeBereidingConsumptie,prijs,totaal")] Bestelling bestelling)
+        public ActionResult Edit([Bind(Include = "bestellingId,reserveringId,consumptieItemCode,aantal,dateTimeBereidingConsumptie,prijs,totaal,isKlaar")] Bestelling bestelling)
         {
             if (ModelState.IsValid)
             {
@@ -141,32 +141,6 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
             ViewBag.consumptieItemCode = new SelectList(db.ConsumptieItem, "consumptieItemCode", "consumptieGroepCode", bestelling.consumptieItemCode);
             ViewBag.reserveringId = new SelectList(db.Reservering, "reserveringId", "betalingswijze", bestelling.reserveringId);
             return View(bestelling);
-        }
-
-        // GET: Bestellings/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Bestelling bestelling = db.Bestelling.Find(id);
-            if (bestelling == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bestelling);
-        }
-
-        // POST: Bestellings/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Bestelling bestelling = db.Bestelling.Find(id);
-            db.Bestelling.Remove(bestelling);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

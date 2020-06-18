@@ -54,5 +54,19 @@ namespace ExcellentTasteMathijsPattipeilohy.Models
         public Nullable<decimal> prijs { get; set; }
 
         public Nullable<decimal> totaal { get; set; }
+
+        public Nullable<bool> isKlaar { get; set; }
+    }
+
+    public class menumetadata
+    {
+        public string consumptieItemCode { get; set; }
+
+        public string consumptieGroepCode { get; set; }
+
+        public string consumptieItemNaam { get; set; }
+
+        [DataType(DataType.Currency)]
+        public decimal prijs { get; set; }
     }
 }

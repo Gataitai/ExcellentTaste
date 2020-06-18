@@ -12,8 +12,6 @@ namespace ExcellentTasteMathijsPattipeilohy.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
     public partial class ExcellentTasteDBEntities : DbContext
     {
@@ -39,10 +37,5 @@ namespace ExcellentTasteMathijsPattipeilohy.Models
         public virtual DbSet<Klant> Klant { get; set; }
         public virtual DbSet<Reservering> Reservering { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-    
-        public virtual ObjectResult<GET_TODAYS_RESERVATIONS_Result> GET_TODAYS_RESERVATIONS()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GET_TODAYS_RESERVATIONS_Result>("GET_TODAYS_RESERVATIONS");
-        }
     }
 }

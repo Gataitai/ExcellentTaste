@@ -21,6 +21,7 @@ namespace ExcellentTasteMathijsPattipeilohy.Models
         public Nullable<System.DateTime> dateTimeBereidingConsumptie { get; set; }
         public Nullable<decimal> prijs { get; set; }
         public Nullable<decimal> totaal { get; set; }
+        public Nullable<bool> isKlaar { get; set; }
     
         public virtual ConsumptieItem ConsumptieItem { get; set; }
         public virtual Reservering Reservering { get; set; }

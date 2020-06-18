@@ -60,6 +60,7 @@
     <Property Name="dateTimeBereidingConsumptie" Type="DateTime" Precision="3" />
     <Property Name="prijs" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="totaal" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="isKlaar" Type="Boolean" />
     <NavigationProperty Name="ConsumptieItem" Relationship="Self.FK_Bestelling_ConsumptieItem" FromRole="Bestelling" ToRole="ConsumptieItem" />
     <NavigationProperty Name="Reservering" Relationship="Self.FK_Bestelling_Reservering" FromRole="Bestelling" ToRole="Reservering" />
   </EntityType>
@@ -277,17 +278,5 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
-    <FunctionImport Name="GET_TODAYS_RESERVATIONS" ReturnType="Collection(ExcellentTasteDBModel.GET_TODAYS_RESERVATIONS_Result)" />
   </EntityContainer>
-  <ComplexType Name="GET_TODAYS_RESERVATIONS_Result">
-    <Property Type="String" Name="klantNaam" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="telefoon" Nullable="false" MaxLength="11" />
-    <Property Type="Time" Name="tijd" Nullable="false" />
-    <Property Type="Int32" Name="tafel" Nullable="false" />
-    <Property Type="Int32" Name="aantalPersonen" Nullable="false" />
-    <Property Type="DateTime" Name="datumToegevoegd" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="reserveringId" Nullable="false" />
-    <Property Type="Int32" Name="status" Nullable="false" />
-    <Property Type="Decimal" Name="BonBestellingen" Nullable="true" Precision="19" Scale="4" />
-  </ComplexType>
 </Schema>

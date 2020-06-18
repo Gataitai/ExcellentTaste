@@ -56,6 +56,7 @@
           <ScalarProperty Name="dateTimeBereidingConsumptie" ColumnName="dateTimeBereidingConsumptie" />
           <ScalarProperty Name="prijs" ColumnName="prijs" />
           <ScalarProperty Name="totaal" ColumnName="totaal" />
+          <ScalarProperty Name="isKlaar" ColumnName="isKlaar" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -142,20 +143,5 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="GET_TODAYS_RESERVATIONS" FunctionName="ExcellentTasteDBModel.Store.GET_TODAYS_RESERVATIONS">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ExcellentTasteDBModel.GET_TODAYS_RESERVATIONS_Result">
-          <ScalarProperty Name="klantNaam" ColumnName="klantNaam" />
-          <ScalarProperty Name="telefoon" ColumnName="telefoon" />
-          <ScalarProperty Name="tijd" ColumnName="tijd" />
-          <ScalarProperty Name="tafel" ColumnName="tafel" />
-          <ScalarProperty Name="aantalPersonen" ColumnName="aantalPersonen" />
-          <ScalarProperty Name="datumToegevoegd" ColumnName="datumToegevoegd" />
-          <ScalarProperty Name="reserveringId" ColumnName="reserveringId" />
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="BonBestellingen" ColumnName="BonBestellingen" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -24,7 +24,7 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
         // GET: ConsumptieItems/Create
         public ActionResult Create()
         {
-            ViewBag.consumptieGroepCode = new SelectList(db.ConsumptieGroep, "consumptieGroepCode", "consumptieCode");
+            ViewBag.consumptieGroepCode = new SelectList(db.ConsumptieGroep, "consumptieGroepCode", "consumptieGroepNaam");
             return View();
         }
 
@@ -42,7 +42,7 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.consumptieGroepCode = new SelectList(db.ConsumptieGroep, "consumptieGroepCode", "consumptieCode", consumptieItem.consumptieGroepCode);
+            ViewBag.consumptieGroepCode = new SelectList(db.ConsumptieGroep, "consumptieGroepCode", "consumptieGroepNaam", consumptieItem.consumptieGroepCode);
             return View(consumptieItem);
         }
 
@@ -58,7 +58,7 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.consumptieGroepCode = new SelectList(db.ConsumptieGroep, "consumptieGroepCode", "consumptieCode", consumptieItem.consumptieGroepCode);
+            ViewBag.consumptieGroepCode = new SelectList(db.ConsumptieGroep, "consumptieGroepCode", "consumptieGroepNaam", consumptieItem.consumptieGroepCode);
             return View(consumptieItem);
         }
 
@@ -75,7 +75,7 @@ namespace ExcellentTasteMathijsPattipeilohy.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.consumptieGroepCode = new SelectList(db.ConsumptieGroep, "consumptieGroepCode", "consumptieCode", consumptieItem.consumptieGroepCode);
+            ViewBag.consumptieGroepCode = new SelectList(db.ConsumptieGroep, "consumptieGroepCode", "consumptieGroepNaam", consumptieItem.consumptieGroepCode);
             return View(consumptieItem);
         }
 

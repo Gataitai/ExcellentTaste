@@ -8,4 +8,14 @@ namespace ExcellentTasteMathijsPattipeilohy.Models
     {
     }
 
+    [MetadataType(typeof(bestellingmetadata))]
+    public partial class Bestelling
+    {
+    }
+
+    [MetadataType(typeof(menumetadata))]
+    public partial class ConsumptieItem
+    {
+    }
+
 }

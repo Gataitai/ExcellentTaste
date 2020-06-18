@@ -62,6 +62,7 @@
     <Property Name="dateTimeBereidingConsumptie" Type="datetime" />
     <Property Name="prijs" Type="decimal" Precision="19" Scale="4" />
     <Property Name="totaal" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="isKlaar" Type="bit" />
   </EntityType>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -246,7 +247,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="GET_TODAYS_RESERVATIONS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="ExcellentTasteDBModelStoreContainer">
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
